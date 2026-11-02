@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="gpu" os="linux">
+  <label>GPU shader caches</label>
+  <description>Cache cleanup for Mesa and NVIDIA shader caches</description>
+  <running type="exe" os="linux" same_user="true">wine</running>
+  <running type="exe" os="linux" same_user="true">wineserver</running>
+  <running type="exe" os="linux" same_user="true">umu</running>
+  <running type="exe" os="linux" same_user="true">umu-run</running>
+
+  <option id="shader_cache">
+    <label>Shader cache</label>
+    <description>Delete Mesa and NVIDIA shader caches.</description>
+
+    <action command="delete" search="walk.all" path="$HOME/.cache/mesa_shader_cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/radv_builtin_shaders"/>
+    <action command="delete" search="walk.all" path="$HOME/.nv/GLCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.nv/ComputeCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/nvidia"/>
+  </option>
+</cleaner>

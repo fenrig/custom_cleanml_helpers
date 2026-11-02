@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="codex" os="linux">
+  <label>Codex</label>
+  <description>Cache and factory-wipe cleaners for OpenAI Codex CLI</description>
+  <running type="exe" os="linux" same_user="true">codex</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Codex CLI caches, logs, and temporary files.</description>
+    <warning>Close Codex before cleaning. This preserves config, auth, and history.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.codex/cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.codex/caches"/>
+    <action command="delete" search="walk.all" path="$HOME/.codex/logs"/>
+    <action command="delete" search="walk.all" path="$HOME/.codex/tmp"/>
+    <action command="delete" search="walk.all" path="$HOME/.codex/temp"/>
+  </option>
+
+  <option id="factory_wipe">
+    <label>Factory wipe</label>
+    <description>Delete all Codex CLI local state.</description>
+    <warning>This removes Codex config, auth, history, logs, sessions, and caches. You may need to log in again.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.codex"/>
+  </option>
+</cleaner>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="proton" os="linux">
+  <label>Proton</label>
+  <description>Cache cleanup for Proton shader caches</description>
+  <running type="exe" os="linux" same_user="true">steam</running>
+  <running type="exe" os="linux" same_user="true">wine</running>
+  <running type="exe" os="linux" same_user="true">wineserver</running>
+  <running type="exe" os="linux" same_user="true">umu</running>
+  <running type="exe" os="linux" same_user="true">umu-run</running>
+
+  <option id="dxvk_cache">
+    <label>DXVK/VKD3D caches</label>
+    <description>Delete DirectX translation shader caches.</description>
+    <warning>Games may rebuild shaders on next launch.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.cache/dxvk"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/vkd3d"/>
+  </option>
+</cleaner>

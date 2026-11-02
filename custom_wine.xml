@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="custom_wine" os="linux">
+  <label>Wine (custom cache cleaner)</label>
+  <description>Cache cleanup for Wine prefixes without replacing BleachBit's built-in Wine cleaner</description>
+  <running type="exe" os="linux" same_user="true">wine</running>
+  <running type="exe" os="linux" same_user="true">wineserver</running>
+  <running type="exe" os="linux" same_user="true">umu</running>
+  <running type="exe" os="linux" same_user="true">umu-run</running>
+
+  <option id="temp">
+    <label>Temporary files</label>
+    <description>Delete temporary files from Wine prefixes.</description>
+
+    <action command="delete" search="walk.all" path="$HOME/.wine/drive_c/users/*/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/.wine/drive_c/users/*/AppData/Local/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/.wine/drive_c/windows/temp"/>
+  </option>
+
+  <option id="shader_cache">
+    <label>Shader caches</label>
+    <description>Delete DXVK and VKD3D shader caches.</description>
+
+    <action command="delete" search="walk.all" path="$HOME/.cache/dxvk"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/vkd3d"/>
+  </option>
+</cleaner>

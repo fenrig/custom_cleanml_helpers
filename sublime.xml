@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="sublime_text" os="linux">
+  <label>Sublime Text</label>
+  <description>Cache cleanup for Sublime Text</description>
+  <running type="exe" os="linux" same_user="true">sublime_text</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Sublime Text cache and index files.</description>
+    <warning>Close Sublime Text before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/sublime-text"/>
+  </option>
+</cleaner>

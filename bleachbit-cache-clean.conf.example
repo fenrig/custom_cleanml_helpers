@@ -1,0 +1,11 @@
+# Cleaner groups enabled by the automatic system-wide cleanup.
+#
+# Available groups:
+#   safe       Built-in browser/desktop caches and conservative app caches
+#   desktop    Desktop, messenger, browser, and editor caches
+#   gaming     Steam, Lutris, Wine, Proton, and GPU caches
+#   developer  CLI, IDE, package-build, and crash-report caches
+#
+# Keep all groups enabled to preserve the default behavior. Remove a group
+# when the associated applications should not be touched automatically.
+EnabledGroups=safe,desktop,gaming,developer

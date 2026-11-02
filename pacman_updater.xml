@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="pacman_updater" os="linux">
+  <label>Pacman Updater</label>
+  <description>Cache cleanup for Pacman Updater</description>
+  <running type="exe" os="linux" same_user="false">pacman-updater</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Pacman Updater cache files.</description>
+    <warning>Close Pacman Updater before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/pacman-updater"/>
+  </option>
+</cleaner>

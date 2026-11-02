@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="session" os="linux">
+  <label>Session</label>
+  <description>Cache cleanup for Session</description>
+  <running type="exe" os="linux" same_user="true">Session</running>
+  <running type="exe" os="linux" same_user="true">session</running>
+  <running type="exe" os="linux" same_user="true">session-desktop</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Session Messenger Chromium/Electron cache files.</description>
+    <warning>Close Session before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/DawnCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/ShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/GrShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/Crashpad/completed" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Session/logs" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Session" />
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/session-desktop/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/session-desktop/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/session-desktop/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/session-desktop" />
+  </option>
+</cleaner>

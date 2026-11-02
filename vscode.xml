@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="vscode_family" os="linux">
+  <label>VS Code family</label>
+  <description>Cache cleanup for VS Code, VS Code Insiders, VSCodium, Cursor, Windsurf, and Code OSS</description>
+  <running type="exe" os="linux" same_user="true">code</running>
+  <running type="exe" os="linux" same_user="true">code-insiders</running>
+  <running type="exe" os="linux" same_user="true">codium</running>
+  <running type="exe" os="linux" same_user="true">cursor</running>
+  <running type="exe" os="linux" same_user="true">windsurf</running>
+  <running type="exe" os="linux" same_user="true">code-oss</running>
+
+  <option id="vscode_cache">
+    <label>Visual Studio Code cache</label>
+    <description>Delete VS Code cache files</description>
+    <warning>Close VS Code before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Code"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/Code"/>
+  </option>
+
+  <option id="vscode_insiders_cache">
+    <label>VS Code Insiders cache</label>
+    <description>Delete VS Code Insiders cache files</description>
+    <warning>Close VS Code Insiders before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - Insiders/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Code - Insiders"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - Insiders/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/Code - Insiders"/>
+  </option>
+
+  <option id="vscodium_cache">
+    <label>VSCodium cache</label>
+    <description>Delete VSCodium cache files</description>
+    <warning>Close VSCodium before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/VSCodium/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/VSCodium"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/VSCodium/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/VSCodium"/>
+  </option>
+
+  <option id="cursor_cache">
+    <label>Cursor cache</label>
+    <description>Delete Cursor cache files</description>
+    <warning>Close Cursor before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Cursor/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Cursor"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Cursor/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/Cursor"/>
+  </option>
+
+  <option id="windsurf_cache">
+    <label>Windsurf cache</label>
+    <description>Delete Windsurf editor cache files</description>
+    <warning>Close Windsurf before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Windsurf/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Windsurf"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Windsurf/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/Windsurf"/>
+  </option>
+
+  <option id="code_oss_cache">
+    <label>Code OSS cache</label>
+    <description>Delete Code OSS cache files</description>
+    <warning>Close Code OSS before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/CachedData"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Code - OSS/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Code - OSS"/>
+
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/Code Cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/CachedData"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/GPUCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/DawnCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$HOME/.config/Code - OSS/Crashpad/completed"/>
+    <action command="delete" search="walk.all" path="$HOME/.cache/Code - OSS"/>
+  </option>
+</cleaner>

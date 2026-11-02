@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PATH=/usr/bin:/usr/sbin
+export PATH
+
+project_dir=$(CDPATH= cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+bleachbit_bin=${BLEACHBIT_BIN:-/usr/bin/bleachbit}
+
+fail() {
+  printf 'check failed: %s\n' "$1" >&2
+  exit 1
+}
+
+[[ -x "$bleachbit_bin" ]] || fail "BleachBit not found at $bleachbit_bin"
+command -v xmllint >/dev/null || fail "xmllint is required"
+
+bash -n "$project_dir/scripts/bleachbit-cache-clean"
+
+mapfile -t cleaner_files < <(find "$project_dir" -maxdepth 1 -type f -name '*.xml' -printf '%f\n' | sort)
+((${#cleaner_files[@]} > 0)) || fail "no CleanerML files found"
+
+for file in "${cleaner_files[@]}"; do
+  xmllint --noout "$project_dir/$file"
+done
+
+tmp_dir=$(mktemp -d)
+trap 'rm -rf "$tmp_dir"' EXIT
+mkdir -p "$tmp_dir/options/cleaners" "$tmp_dir/home"
+cp -- "$project_dir"/*.xml "$tmp_dir/options/cleaners/"
+
+cleaner_list="$tmp_dir/cleaners.list"
+BLEACHBIT_TEST_OPTIONS_DIR="$tmp_dir/options" \
+HOME="$tmp_dir/home" \
+  "$bleachbit_bin" --list-cleaners >"$cleaner_list"
+
+while IFS= read -r file; do
+  cleaner_id=$(sed -n 's/.*<cleaner id="\([^"]*\)".*/\1/p' "$project_dir/$file" | head -n 1)
+  [[ -n "$cleaner_id" ]] || fail "$file has no cleaner id"
+
+  while IFS= read -r option_id; do
+    [[ -n "$option_id" ]] || continue
+    if ! grep -Fqx "$cleaner_id.$option_id" "$cleaner_list"; then
+      fail "$file option $cleaner_id.$option_id was not recognized by BleachBit"
+    fi
+  done < <(sed -n 's/.*<option id="\([^"]*\)".*/\1/p' "$project_dir/$file")
+done < <(printf '%s\n' "${cleaner_files[@]}")
+
+while IFS= read -r cleaner; do
+  [[ -n "$cleaner" ]] || continue
+  grep -Fqx "$cleaner" "$cleaner_list" || fail "launcher cleaner is unavailable: $cleaner"
+done < <(
+  awk '
+    /^[[:space:]]*(safe|desktop|gaming|developer)_cleaners=\(/ { active=1; next }
+    active && /^[[:space:]]*\)/ { active=0; next }
+    active {
+      gsub(/[[:space:]]+/, "", $0)
+      if ($0 != "") print $0
+    }
+  ' "$project_dir/scripts/bleachbit-cache-clean"
+)
+
+config="$project_dir/bleachbit-cache-clean.conf.example"
+grep -Eq '^EnabledGroups=safe,desktop,gaming,developer$' "$config" \
+  || fail "default configuration does not enable all groups"
+
+make -C "$project_dir" -n install >/dev/null \
+  || fail "make install dry-run failed"
+
+install_plan=$(make -C "$project_dir" -n install)
+for file in "${cleaner_files[@]}"; do
+  grep -Fq "$file" <<< "$install_plan" \
+    || fail "$file is missing from the install plan"
+done
+grep -Fq 'bleachbit-cache-clean.service' <<< "$install_plan" \
+  || fail 'systemd service is missing from the install plan'
+grep -Fq 'bleachbit-cache-clean.timer' <<< "$install_plan" \
+  || fail 'systemd timer is missing from the install plan'
+
+printf 'All checks passed.\n'

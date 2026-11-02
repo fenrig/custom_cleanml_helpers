@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="teams" os="linux">
+  <label>Microsoft Teams</label>
+  <description>Cache cleanup for Microsoft Teams variants</description>
+  <running type="exe" os="linux" same_user="true">teams</running>
+  <running type="exe" os="linux" same_user="true">teams-for-linux</running>
+  <running type="exe" os="linux" same_user="true">msteams</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Microsoft Teams Chromium/Electron cache files.</description>
+    <warning>Close Teams before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/DawnCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/ShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/GrShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/Crashpad/completed" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Microsoft/Microsoft Teams/logs" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Microsoft/Microsoft Teams" />
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams-for-linux/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams-for-linux/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams-for-linux/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/teams-for-linux" />
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/teams/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/teams" />
+  </option>
+</cleaner>

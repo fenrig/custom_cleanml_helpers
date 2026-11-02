@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="drkonqi" os="linux">
+  <label>DrKonqi</label>
+  <description>KDE crash reporter cache and crash metadata cleanup</description>
+
+  <option id="crashes">
+    <label>Crash reports</label>
+    <description>Delete queued KDE crash reports and crash metadata</description>
+    <warning>This removes local crash report state from DrKonqi. Close KDE apps before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/drkonqi/crashes"/>
+  </option>
+</cleaner>

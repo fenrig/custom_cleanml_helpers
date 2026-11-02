@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="thorium" os="linux">
+  <label>Thorium</label>
+  <description>Cache cleanup for Thorium browser</description>
+  <running type="exe" os="linux" same_user="true">thorium</running>
+  <running type="exe" os="linux" same_user="true">thorium-browser</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete browser cache files and cache directories used by Thorium</description>
+    <warning>Close Thorium before cleaning. This keeps browser state and profiles intact.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/GraphiteDawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/component_crx_cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Crash Reports"/>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/GrShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/ShaderCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Service Worker/ScriptCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Shared Dictionary/cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/blob_storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/Session Storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/optimization_guide_hint_cache_store"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/thorium/Default/VideoDecodeStats"/>
+  </option>
+</cleaner>

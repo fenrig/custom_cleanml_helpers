@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="steam" os="linux">
+  <label>Steam</label>
+  <description>Cache cleanup for Steam</description>
+  <running type="exe" os="linux" same_user="true">steam</running>
+
+  <option id="webcache">
+    <label>Webcache</label>
+    <description>Delete the web cache kept by Steam.</description>
+    <warning>Deleting the cache could slow down application usage.</warning>
+    <action search="walk.all" command="delete" path="$XDG_DATA_HOME/Steam/config/htmlcache" />
+  </option>
+
+  <option id="shader_cache">
+    <label>Shader cache</label>
+    <description>Delete Steam/Proton shader pre-caches and generated shader caches.</description>
+    <warning>Games may stutter temporarily while shaders are rebuilt.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.steam/steam/steamapps/shadercache"/>
+    <action command="delete" search="walk.all" path="$HOME/.local/share/Steam/steamapps/shadercache"/>
+    <action command="delete" search="walk.all" path="$HOME/.var/app/com.valvesoftware.Steam/.local/share/Steam/steamapps/shadercache"/>
+  </option>
+</cleaner>

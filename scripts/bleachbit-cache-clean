@@ -1,0 +1,191 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+PATH=/usr/bin:/usr/sbin
+export PATH
+
+BLEACHBIT_BIN=${BLEACHBIT_BIN:-/usr/bin/bleachbit}
+RUNUSER_BIN=${RUNUSER_BIN:-/usr/bin/runuser}
+CONFIG_FILE=${CONFIG_FILE:-/etc/bleachbit-cache-clean.conf}
+
+if [[ ! -x "$BLEACHBIT_BIN" ]]; then
+  echo "bleachbit not found at $BLEACHBIT_BIN" >&2
+  exit 1
+fi
+
+if [[ ! -x "$RUNUSER_BIN" ]]; then
+  echo "runuser not found at $RUNUSER_BIN" >&2
+  exit 1
+fi
+
+if ((EUID != 0)); then
+  echo "bleachbit-cache-clean must run as root" >&2
+  exit 1
+fi
+
+exec 9>/run/lock/bleachbit-cache-clean.lock
+if ! flock -n 9; then
+  echo "Another BleachBit cache cleanup is already running; exiting." >&2
+  exit 0
+fi
+
+safe_cleaners=(
+  chromium.cache
+  firefox.cache
+  google_chrome.cache
+  thunderbird.cache
+  vlc.memory_dump
+  thumbnails.cache
+  kde.cache
+)
+
+desktop_cleaners=(
+  ferdium.cache
+  session.cache
+  simplex.cache
+  discord.cache
+  teams.cache
+  nextcloud.qmlcache
+  stremio.cache
+  thorium.cache
+  falkon.cache
+  pacman_updater.cache
+  sublime_text.cache
+  wowup.cache
+  vscode_family.vscode_cache
+  vscode_family.vscode_insiders_cache
+  vscode_family.vscodium_cache
+  vscode_family.cursor_cache
+  vscode_family.windsurf_cache
+  vscode_family.code_oss_cache
+  plasma.cache
+  drkonqi.crashes
+)
+
+gaming_cleaners=(
+  steam.webcache
+  steam.shader_cache
+  custom_wine.temp
+  custom_wine.shader_cache
+  proton.dxvk_cache
+  gpu.shader_cache
+  lutris.cache
+)
+
+developer_cleaners=(
+  yay.buildcache
+  codex.cache
+  claude_code.cache
+  gemini_cli.cache
+  aider.cache
+)
+
+enabled_groups=(safe desktop gaming developer)
+if [[ -r "$CONFIG_FILE" ]]; then
+  config_entries=0
+  while IFS='=' read -r key value; do
+    key="${key#${key%%[![:space:]]*}}"
+    key="${key%${key##*[![:space:]]}}"
+    [[ -z "$key" || "${key:0:1}" == "#" ]] && continue
+    if [[ "$key" != "EnabledGroups" ]]; then
+      printf 'Unsupported configuration entry: %s\n' "$key" >&2
+      exit 1
+    fi
+    config_entries=$((config_entries + 1))
+    IFS=',' read -r -a enabled_groups <<< "$value"
+  done < "$CONFIG_FILE"
+  if ((config_entries != 1)); then
+    echo "Configuration must contain exactly one EnabledGroups entry" >&2
+    exit 1
+  fi
+fi
+
+selected_cleaners=()
+for group in "${enabled_groups[@]}"; do
+  group="${group#${group%%[![:space:]]*}}"
+  group="${group%${group##*[![:space:]]}}"
+  case "$group" in
+    safe) selected_cleaners+=("${safe_cleaners[@]}") ;;
+    desktop) selected_cleaners+=("${desktop_cleaners[@]}") ;;
+    gaming) selected_cleaners+=("${gaming_cleaners[@]}") ;;
+    developer) selected_cleaners+=("${developer_cleaners[@]}") ;;
+    '')
+      echo "EnabledGroups contains an empty group" >&2
+      exit 1
+      ;;
+    *) printf 'Unknown cleaner group: %s\n' "$group" >&2; exit 1 ;;
+  esac
+done
+
+if ((${#selected_cleaners[@]} == 0)); then
+  echo "No matching cleaners are available." >&2
+  exit 0
+fi
+
+available_cleaners=$("$BLEACHBIT_BIN" --list-cleaners 2>/dev/null) || {
+  echo "Unable to list BleachBit cleaners" >&2
+  exit 1
+}
+
+missing_cleaners=()
+for cleaner in "${selected_cleaners[@]}"; do
+  if ! grep -Fqx "$cleaner" <<< "$available_cleaners"; then
+    missing_cleaners+=("$cleaner")
+  fi
+done
+if ((${#missing_cleaners[@]} > 0)); then
+  printf 'Unavailable BleachBit cleaners: %s\n' "${missing_cleaners[*]}" >&2
+  exit 1
+fi
+
+uid_min=1000
+uid_max=60000
+if [[ -r /etc/login.defs ]]; then
+  uid_min=$(awk '$1 == "UID_MIN" { print $2; exit }' /etc/login.defs)
+  uid_max=$(awk '$1 == "UID_MAX" { print $2; exit }' /etc/login.defs)
+fi
+uid_min=${uid_min:-1000}
+uid_max=${uid_max:-60000}
+
+status=0
+users_seen=0
+users_cleaned=0
+run_started_at=$(date --iso-8601=seconds)
+printf 'Cleanup run started: at=%s\n' "$run_started_at"
+while IFS=: read -r username _ uid _ _ home shell; do
+  if ((uid < uid_min || uid > uid_max)) || [[ "$home" != /* ]] || [[ ! -d "$home" ]]; then
+    continue
+  fi
+
+  users_seen=$((users_seen + 1))
+  user_started_at=$(date --iso-8601=seconds)
+  printf 'Starting cleanup: user=%s uid=%s home=%s started_at=%s\n' \
+    "$username" "$uid" "$home" "$user_started_at"
+  if ! nice -n 19 ionice -c 3 "$RUNUSER_BIN" --user "$username" -- env -i \
+      PATH="$PATH" \
+      HOME="$home" \
+      USER="$username" \
+      LOGNAME="$username" \
+      SHELL=/bin/sh \
+      LANG=C \
+      LC_ALL=C \
+      XDG_CONFIG_HOME="$home/.config" \
+      XDG_CACHE_HOME="$home/.cache" \
+      XDG_DATA_HOME="$home/.local/share" \
+      "$BLEACHBIT_BIN" --clean "${selected_cleaners[@]}"; then
+    user_completed_at=$(date --iso-8601=seconds)
+    printf 'Cleanup failed: user=%s uid=%s home=%s completed_at=%s\n' \
+      "$username" "$uid" "$home" "$user_completed_at" >&2
+    status=1
+  else
+    users_cleaned=$((users_cleaned + 1))
+    user_completed_at=$(date --iso-8601=seconds)
+    printf 'Cleanup completed: user=%s uid=%s completed_at=%s\n' \
+      "$username" "$uid" "$user_completed_at"
+  fi
+done < <(getent passwd)
+
+run_completed_at=$(date --iso-8601=seconds)
+printf 'Cleanup run completed: eligible_users=%d completed_users=%d exit_status=%d completed_at=%s\n' \
+  "$users_seen" "$users_cleaned" "$status" "$run_completed_at"
+exit "$status"

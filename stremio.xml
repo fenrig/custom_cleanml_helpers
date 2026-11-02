@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="stremio" os="linux">
+  <label>Stremio / Stremio Enhanced</label>
+  <description>Cache cleanup for Stremio and Stremio Enhanced</description>
+  <running type="exe" os="linux" same_user="true">stremio-enhanced</running>
+  <running type="exe" os="linux" same_user="true">stremio</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete browser-style caches and service worker caches used by Stremio and Stremio Enhanced</description>
+    <warning>Close Stremio before cleaning. This only removes cache data, not account or library state.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/Service Worker/ScriptCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/Session Storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/blob_storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio-enhanced/VideoDecodeStats"/>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Shared Dictionary/cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/VideoDecodeStats"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Service Worker/ScriptCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/Session Storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/stremio/blob_storage"/>
+
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/Service Worker/ScriptCache"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/Session Storage"/>
+    <action command="delete" search="walk.all" path="$XDG_DATA_HOME/Smart Code ltd/Stremio/QtWebEngine/Default/blob_storage"/>
+  </option>
+</cleaner>

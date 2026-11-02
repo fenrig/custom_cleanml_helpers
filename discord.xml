@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="discord" os="linux">
+  <label>Discord</label>
+  <description>Cache cleanup for Discord</description>
+  <running type="exe" os="linux" same_user="true">Discord</running>
+  <running type="exe" os="linux" same_user="true">discord</running>
+  <running type="exe" os="linux" same_user="true">DiscordPTB</running>
+  <running type="exe" os="linux" same_user="true">DiscordCanary</running>
+  <running type="exe" os="linux" same_user="true">DiscordDevelopment</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Discord Chromium/Electron cache files.</description>
+    <warning>Close Discord before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/DawnCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/ShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/GrShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/Crashpad/completed" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discord/logs" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/discord" />
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discordcanary/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/discordptb/Cache" />
+  </option>
+</cleaner>

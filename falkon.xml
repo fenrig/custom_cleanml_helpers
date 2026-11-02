@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="falkon" os="linux">
+  <label>Falkon</label>
+  <description>Cache cleanup for Falkon browser</description>
+  <running type="exe" os="linux" same_user="true">falkon</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete browser cache files and cache directories used by Falkon</description>
+    <warning>Close Falkon before cleaning. This keeps bookmarks, passwords, and profile settings intact.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/DawnCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Service Worker/ScriptCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Shared Dictionary/cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/blob_storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/Session Storage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/falkon/profiles/default/VideoDecodeStats"/>
+  </option>
+</cleaner>

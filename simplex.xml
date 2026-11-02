@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="simplex" os="linux">
+  <label>SimpleX</label>
+  <description>Cache cleanup for SimpleX Chat</description>
+  <running type="exe" os="linux" same_user="true">simplex</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete SimpleX Chat desktop cache files.</description>
+    <warning>Close SimpleX before cleaning. This does not delete ~/.simplex databases.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/DawnCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/ShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/SimpleX/GrShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/SimpleX" />
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/simplex-chat/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/simplex-chat/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/simplex-chat/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/simplex-chat" />
+  </option>
+</cleaner>

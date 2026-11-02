@@ -1,0 +1,13 @@
+[Unit]
+Description=Run BleachBit cache cleanup biweekly
+
+[Timer]
+# Run on the first and third Monday of each month, approximately every two
+# weeks. Persistent=true replays a missed calendar event after boot.
+OnCalendar=Mon *-*-1..7 03:00
+OnCalendar=Mon *-*-15..21 03:00
+Persistent=true
+Unit=bleachbit-cache-clean.service
+
+[Install]
+WantedBy=timers.target

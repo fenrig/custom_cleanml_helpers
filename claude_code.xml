@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="claude_code" os="linux">
+  <label>Claude Code</label>
+  <description>Cache and factory-wipe cleaners for Claude Code</description>
+  <running type="exe" os="linux" same_user="true">claude</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Claude Code caches, logs, and temporary files.</description>
+    <warning>Close Claude Code before cleaning. This preserves most settings and project files.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.claude/cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.claude/caches"/>
+    <action command="delete" search="walk.all" path="$HOME/.claude/logs"/>
+    <action command="delete" search="walk.all" path="$HOME/.claude/tmp"/>
+    <action command="delete" search="walk.all" path="$HOME/.claude/temp"/>
+  </option>
+
+  <option id="factory_wipe">
+    <label>Factory wipe</label>
+    <description>Delete Claude Code user-level local state.</description>
+    <warning>This removes Claude Code user settings, memory, agents, sessions, auth-related state, logs, and caches. It also removes $HOME/.claude.json if present.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.claude"/>
+    <action command="delete" path="$HOME/.claude.json"/>
+  </option>
+</cleaner>

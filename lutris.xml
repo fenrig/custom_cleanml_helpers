@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="lutris" os="linux">
+  <label>Lutris</label>
+  <description>Cache cleanup for Lutris</description>
+  <running type="exe" os="linux" same_user="true">lutris</running>
+  <running type="exe" os="linux" same_user="true">wine</running>
+  <running type="exe" os="linux" same_user="true">wineserver</running>
+  <running type="exe" os="linux" same_user="true">umu</running>
+  <running type="exe" os="linux" same_user="true">umu-run</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Lutris installer downloads, shader caches, and temporary files. Installed games and Lutris metadata are preserved.</description>
+    <warning>Close Lutris before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/lutris/installer"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/lutris/shaders"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/lutris/tmp"/>
+
+    <!-- Common Lutris Wine-prefix locations. Custom prefixes elsewhere are not touched. -->
+    <action command="delete" search="walk.all" path="$HOME/Games/*/drive_c/users/*/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/Games/*/drive_c/users/*/AppData/Local/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/Games/*/drive_c/windows/temp"/>
+    <action command="delete" search="walk.all" path="$HOME/.local/share/lutris/prefixes/*/drive_c/users/*/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/.local/share/lutris/prefixes/*/drive_c/users/*/AppData/Local/Temp"/>
+    <action command="delete" search="walk.all" path="$HOME/.local/share/lutris/prefixes/*/drive_c/windows/temp"/>
+  </option>
+</cleaner>

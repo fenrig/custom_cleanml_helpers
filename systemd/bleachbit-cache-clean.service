@@ -1,0 +1,12 @@
+[Unit]
+Description=BleachBit cache cleanup
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=idle
+TimeoutStartSec=2h
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=bleachbit-cache-clean
+ExecStart=/usr/bin/bleachbit-cache-clean

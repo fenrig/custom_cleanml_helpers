@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="gemini_cli" os="linux">
+  <label>Gemini CLI</label>
+  <description>Cache and factory-wipe cleaners for Gemini CLI</description>
+  <running type="exe" os="linux" same_user="true">gemini</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Gemini CLI caches, logs, and temporary files.</description>
+    <warning>Close Gemini CLI before cleaning. This preserves settings where possible.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.gemini/cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.gemini/caches"/>
+    <action command="delete" search="walk.all" path="$HOME/.gemini/logs"/>
+    <action command="delete" search="walk.all" path="$HOME/.gemini/tmp"/>
+    <action command="delete" search="walk.all" path="$HOME/.gemini/temp"/>
+  </option>
+
+  <option id="factory_wipe">
+    <label>Factory wipe</label>
+    <description>Delete Gemini CLI user-level local state.</description>
+    <warning>This removes Gemini CLI settings, auth-related state, logs, and caches. You may need to configure or log in again.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.gemini"/>
+  </option>
+</cleaner>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="aider" os="linux">
+  <label>Aider</label>
+  <description>Cache and factory-wipe cleaners for Aider</description>
+  <running type="exe" os="linux" same_user="true">aider</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Aider caches, logs, and temporary files.</description>
+    <warning>Close Aider before cleaning. This preserves config and OAuth/API-key files.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.aider/caches"/>
+    <action command="delete" search="walk.all" path="$HOME/.aider/cache"/>
+    <action command="delete" search="walk.all" path="$HOME/.aider/logs"/>
+    <action command="delete" search="walk.all" path="$HOME/.aider/tmp"/>
+    <action command="delete" search="walk.all" path="$HOME/.aider/temp"/>
+  </option>
+
+  <option id="factory_wipe">
+    <label>Factory wipe</label>
+    <description>Delete Aider user-level local state.</description>
+    <warning>This removes Aider config, analytics state, OAuth/API-key files, installs data, logs, and caches.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/.aider"/>
+    <action command="delete" path="$HOME/.aider.conf.yml"/>
+  </option>
+</cleaner>

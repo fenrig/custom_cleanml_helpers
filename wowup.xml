@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="wowup" os="linux">
+  <label>WowUp-CF</label>
+  <description>Cache cleanup for the WowUp CurseForge client</description>
+  <running type="exe" os="linux" same_user="true">WowUpCf</running>
+  <running type="exe" os="linux" same_user="true">WowUp</running>
+  <running type="exe" os="linux" same_user="true">wowup</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete WowUp-CF Electron and browser cache files while preserving addon data and settings.</description>
+    <warning>Close WowUp-CF before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/Code Cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/GPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/DawnGraphiteCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/DawnWebGPUCache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/Shared Dictionary/cache"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/VideoDecodeStats"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/Service Worker/CacheStorage"/>
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/WowUpCf/Crashpad/completed"/>
+  </option>
+</cleaner>

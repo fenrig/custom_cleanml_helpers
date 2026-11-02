@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="yay" os="linux">
+  <label>Yay</label>
+  <description>Custom Arch Linux package manager cache entries</description>
+  <running type="exe" os="linux" same_user="true">yay</running>
+
+  <option id="buildcache">
+    <label>Build Cache (AUR)</label>
+    <description>Delete the AUR build cache kept by yay.</description>
+    <warning>Deleting the cache can slow down rebuilds. Close yay before cleaning.</warning>
+    <action search="walk.all" command="delete" path="$XDG_CACHE_HOME/yay/" />
+  </option>
+</cleaner>

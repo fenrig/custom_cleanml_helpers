@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="ferdium" os="linux">
+  <label>Ferdium</label>
+  <description>Cache cleanup for Ferdium</description>
+  <running type="exe" os="linux" same_user="true">ferdium</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete Ferdium Chromium/Electron cache files.</description>
+    <warning>Close Ferdium before cleaning.</warning>
+
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/Code Cache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/GPUCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/DawnCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/ShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/GrShaderCache" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/Crashpad/completed" />
+    <action command="delete" search="walk.all" path="$XDG_CONFIG_HOME/Ferdium/logs" />
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/Ferdium" />
+  </option>
+</cleaner>

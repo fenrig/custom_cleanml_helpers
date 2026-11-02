@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cleaner id="plasma" os="linux">
+  <label>Plasma</label>
+  <description>Small KDE Plasma cache cleanup</description>
+  <running type="exe" os="linux" same_user="true">plasmashell</running>
+  <running type="exe" os="linux" same_user="true">krunner</running>
+  <running type="exe" os="linux" same_user="true">kded6</running>
+
+  <option id="cache">
+    <label>Cache</label>
+    <description>Delete small KDE Plasma cache files and cache directories</description>
+    <warning>This removes generated Plasma caches only. It does not touch Plasma configuration or workspace state.</warning>
+
+    <action command="delete" search="file" path="$XDG_CACHE_HOME/plasma_theme_default.kcache"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/plasma_engine_potd"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/plasmashell"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/bookmarksrunner"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/kwin/qmlcache"/>
+    <action command="delete" search="glob" path="$XDG_CACHE_HOME/ksplash/qtpipelinecache-*"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/ksplash/qmlcache"/>
+    <action command="delete" search="walk.all" path="$XDG_CACHE_HOME/plasmashell/qmlcache"/>
+  </option>
+</cleaner>
