@@ -4,6 +4,9 @@
   <description>Cache cleanup for Stremio and Stremio Enhanced</description>
   <running type="exe" os="linux" same_user="true">stremio-enhanced</running>
   <running type="exe" os="linux" same_user="true">stremio</running>
+  <running type="exe" os="linux" same_user="true">Stremio</running>
+  <!-- Stremio Enhanced may expose only the generic Electron process name. -->
+  <running type="exe" os="linux" same_user="true">electron</running>
 
   <option id="cache">
     <label>Cache</label>
