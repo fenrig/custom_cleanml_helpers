@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<cleaner id="vscode_family" os="linux">
+<cleaner id="custom_vscode_family" os="linux">
   <label>VS Code family</label>
   <description>Cache cleanup for VS Code, VS Code Insiders, VSCodium, Cursor, Windsurf, and Code OSS</description>
   <running type="exe" os="linux" same_user="true">code</running>

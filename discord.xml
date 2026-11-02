@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<cleaner id="discord" os="linux">
+<cleaner id="custom_discord" os="linux">
   <label>Discord</label>
   <description>Cache cleanup for Discord</description>
   <running type="exe" os="linux" same_user="true">Discord</running>

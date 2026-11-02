@@ -12,7 +12,6 @@ CLEANER_FILES := \
 	aider.xml \
 	claude_code.xml \
 	codex.xml \
-	discord.xml \
 	drkonqi.xml \
 	falkon.xml \
 	ferdium.xml \
@@ -32,7 +31,6 @@ CLEANER_FILES := \
 	stremio.xml \
 	yay.xml \
 	custom_wine.xml \
-	vscode.xml \
 	wowup.xml
 
 UNIT_FILES := \
@@ -57,6 +55,8 @@ install: install-cleaners install-script install-config install-units reload
 install-cleaners:
 	$(INSTALL) -d "$(BLEACHBIT_CLEANERS_DIR)"
 	$(INSTALL) -m 644 $(CLEANER_FILES) "$(BLEACHBIT_CLEANERS_DIR)/"
+	$(INSTALL) -m 644 discord.xml "$(BLEACHBIT_CLEANERS_DIR)/custom_discord.xml"
+	$(INSTALL) -m 644 vscode.xml "$(BLEACHBIT_CLEANERS_DIR)/custom_vscode.xml"
 
 install-script:
 	$(INSTALL) -d "$(SYSTEM_BIN_DIR)"
@@ -88,7 +88,7 @@ uninstall:
 	$(RM) "$(BLEACHBIT_CLEANERS_DIR)/aider.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/claude_code.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/codex.xml" \
-		"$(BLEACHBIT_CLEANERS_DIR)/discord.xml" \
+		"$(BLEACHBIT_CLEANERS_DIR)/custom_discord.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/drkonqi.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/falkon.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/ferdium.xml" \
@@ -108,7 +108,7 @@ uninstall:
 		"$(BLEACHBIT_CLEANERS_DIR)/teams.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/yay.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/custom_wine.xml" \
-		"$(BLEACHBIT_CLEANERS_DIR)/vscode.xml" \
+		"$(BLEACHBIT_CLEANERS_DIR)/custom_vscode.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/wowup.xml"
 	$(RM) "$(SYSTEM_BIN_DIR)/bleachbit-cache-clean"
 	$(RM) "$(SYSTEMD_SYSTEM_DIR)/bleachbit-cache-clean.service" \

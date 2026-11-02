@@ -43,7 +43,7 @@ desktop_cleaners=(
   ferdium.cache
   session.cache
   simplex.cache
-  discord.cache
+  custom_discord.cache
   teams.cache
   nextcloud.qmlcache
   stremio.cache
@@ -52,12 +52,12 @@ desktop_cleaners=(
   pacman_updater.cache
   sublime_text.cache
   wowup.cache
-  vscode_family.vscode_cache
-  vscode_family.vscode_insiders_cache
-  vscode_family.vscodium_cache
-  vscode_family.cursor_cache
-  vscode_family.windsurf_cache
-  vscode_family.code_oss_cache
+  custom_vscode_family.vscode_cache
+  custom_vscode_family.vscode_insiders_cache
+  custom_vscode_family.vscodium_cache
+  custom_vscode_family.cursor_cache
+  custom_vscode_family.windsurf_cache
+  custom_vscode_family.code_oss_cache
   plasma.cache
   drkonqi.crashes
 )

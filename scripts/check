@@ -68,6 +68,10 @@ make -C "$project_dir" -n install >/dev/null \
   || fail "make install dry-run failed"
 
 install_plan=$(make -C "$project_dir" -n install)
+grep -Fq 'custom_discord.xml' <<< "$install_plan" \
+  || fail 'custom Discord cleaner is missing from the install plan'
+grep -Fq 'custom_vscode.xml' <<< "$install_plan" \
+  || fail 'custom VS Code cleaner is missing from the install plan'
 for file in "${cleaner_files[@]}"; do
   grep -Fq "$file" <<< "$install_plan" \
     || fail "$file is missing from the install plan"
