@@ -157,6 +157,7 @@ The project provides these additional cleaners:
 | Sublime Text | Cache and index files |
 | Stremio | Chromium/QtWebEngine caches |
 | Microsoft Teams | Chromium/Electron caches |
+| Thunderbird ClamAV scan | Temporary ClamAV scan files in Downloads and Desktop |
 | Thorium | Browser caches |
 | VS Code family | VS Code, Insiders, VSCodium, Cursor, Windsurf, and Code OSS caches |
 | Wine | Default-prefix temporary files and DXVK/VKD3D caches |

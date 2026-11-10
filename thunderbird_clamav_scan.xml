@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<cleaner id="thunderbird-clamav-scan" os="linux">
+  <label>Thunderbird ClamAV scan</label>
+  <description>Remove temporary ClamAV scan files created for Thunderbird attachments</description>
+
+  <option id="scan_files">
+    <label>ClamAV scan files</label>
+    <description>Delete ClamAV scan files from the Downloads and Desktop folders.</description>
+    <warning>This removes all contents of ~/Downloads/clamav-scan and ~/Desktop/clamav-scan.</warning>
+
+    <action command="delete" search="walk.all" path="$HOME/Downloads/clamav-scan"/>
+    <action command="delete" search="walk.all" path="$HOME/Desktop/clamav-scan"/>
+  </option>
+</cleaner>

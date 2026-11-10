@@ -26,6 +26,7 @@ CLEANER_FILES := \
 	simplex.xml \
 	steam.xml \
 	sublime.xml \
+	thunderbird_clamav_scan.xml \
 	thorium.xml \
 	teams.xml \
 	stremio.xml \
@@ -104,6 +105,7 @@ uninstall:
 		"$(BLEACHBIT_CLEANERS_DIR)/steam.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/sublime.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/stremio.xml" \
+		"$(BLEACHBIT_CLEANERS_DIR)/thunderbird_clamav_scan.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/thorium.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/teams.xml" \
 		"$(BLEACHBIT_CLEANERS_DIR)/yay.xml" \
